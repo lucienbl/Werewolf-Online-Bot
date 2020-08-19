@@ -52,7 +52,8 @@ class Command {
     const { content } = this._message;
 
     return this._options.args.map(((arg, index) => {
-      arg.value = content.replace(process.env.BOT_PREFIX, "").split(" ").slice(1)[index];
+      const parsedArgs = content.replace(process.env.BOT_PREFIX, "").split(" ").slice(1);
+      arg.value = this._options.args.length === index + 1 ? parsedArgs.slice(index).join(" ") : parsedArgs[index];
       return arg;
     }));
   }
