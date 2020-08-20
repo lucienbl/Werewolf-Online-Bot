@@ -15,12 +15,31 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PingCommand } from "./Utils";
-import { AnnounceCommand } from "./Common";
-import { ProfileCommand } from "./Profile";
+import { GuildMember } from "discord.js";
+import { Logger } from '../utils';
+import { UserManager } from '.';
 
-export {
-  PingCommand,
-  AnnounceCommand,
-  ProfileCommand
+class GuildMemberAddDispatcher {
+
+  static async dispatch(guildMember: GuildMember) {
+    try {
+      await new GuildMemberAddDispatcher(guildMember).parseAndDispatchGuildMemberAdd();
+    } catch (e) {
+      Logger.error(e.message);
+    }
+  }
+
+  _guildMember: GuildMember;
+
+  constructor(guildMember: GuildMember) {
+    this._guildMember = guildMember;
+  }
+
+  private async parseAndDispatchGuildMemberAdd() {
+    const userManager = new UserManager();
+    
+    await userManager.registerUser(this._guildMember.id);
+  }
 }
+
+export default GuildMemberAddDispatcher;

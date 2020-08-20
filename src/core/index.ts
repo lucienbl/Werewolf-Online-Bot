@@ -15,8 +15,15 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+// socket dispatcher
 import MessageDispatcher from "./MessageDispatcher";
+import GuildMemberAddDispatcher from "./GuildMemberAddDispatcher";
+
+// managers
+import UserManager from "./UserManager";
 
 export {
-  MessageDispatcher
+  MessageDispatcher,
+  GuildMemberAddDispatcher,
+  UserManager
 }

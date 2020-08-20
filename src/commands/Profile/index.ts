@@ -15,12 +15,8 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PingCommand } from "./Utils";
-import { AnnounceCommand } from "./Common";
-import { ProfileCommand } from "./Profile";
+import ProfileCommand from "./ProfileCommand";
 
 export {
-  PingCommand,
-  AnnounceCommand,
   ProfileCommand
 }

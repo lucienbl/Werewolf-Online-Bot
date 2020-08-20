@@ -20,7 +20,7 @@ import "reflect-metadata";
 import { container } from 'tsyringe';
 import { createConnection, Connection } from "typeorm";
 import { Logger } from "./utils";
-import { MessageDispatcher } from './core';
+import { MessageDispatcher, GuildMemberAddDispatcher } from './core';
 import { User } from './db';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -47,6 +47,7 @@ createConnection({
 
   // setup client listeners
   client.on('message', MessageDispatcher.dispatch);
+  client.on('guildMemberAdd', GuildMemberAddDispatcher.dispatch);
 
   // login client
   client.login(process.env.BOT_TOKEN).then(() => Logger.info(`Logged in as ${client.user.tag} !`));
