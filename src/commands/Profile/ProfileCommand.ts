@@ -39,10 +39,13 @@ class ProfileCommand extends Command {
     const member: GuildMember | User = this.argument("user").value ? this.message.guild.members.resolve(this.argument("user").value.match(/[0-9]+/g)[0]) : this.message.author;
     if (!member) throw new Error("Unrecognized user !");
 
-    const user = userManager.getUserByDiscordId(member.id);
-    if (!user) throw new Error(`This is user does not exist in our database (${member.id}).`);
+    let user = await userManager.getUserByDiscordId(member.id);
+    if (!user && this.message.author.id === member.id) {
+      user = await userManager.registerUser(member.id);
+    }
+    if (!user) throw new Error(`This user does not exist in our database (${member.id}).`);
 
-    await this.message.channel.send(JSON.stringify(user));
+    await this.message.channel.send('```json\n' + JSON.stringify(user, null, 2) + '```');
   }
 }
 
