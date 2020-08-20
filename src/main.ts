@@ -16,8 +16,12 @@
  */
 
 import { Client } from "discord.js";
+import "reflect-metadata";
+import { container } from 'tsyringe';
+import { createConnection, Connection } from "typeorm";
 import { Logger } from "./utils";
 import { MessageDispatcher } from './core';
+import { User } from './db';
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -25,12 +29,31 @@ if (process.env.NODE_ENV !== 'production') {
 
 process.env.TZ = "UTC";
 
-const client = new Client();
+createConnection({
+  type: "postgres",
+  host: 'localhost',
+  port: 5432,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  entities: [
+    User
+  ],
+  synchronize: true,
+  logging: true
+}).then(async (connection: Connection) => {
+  // setup client
+  const client = new Client();
 
-// setup client listeners
-client.on('message', MessageDispatcher.dispatch);
+  // setup client listeners
+  client.on('message', MessageDispatcher.dispatch);
 
-// login client
-client.login(process.env.BOT_TOKEN).then(() => Logger.info(`Logged in as ${client.user.tag} !`));
+  // login client
+  client.login(process.env.BOT_TOKEN).then(() => Logger.info(`Logged in as ${client.user.tag} !`));
+
+  // setup DI containers
+  container.registerInstance<Client>(Client, client);
+  container.registerInstance<Connection>(Connection, connection);
+}).catch(error => Logger.error(error));
 
 
