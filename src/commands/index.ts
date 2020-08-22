@@ -18,7 +18,13 @@
 import { PingCommand } from "./Utils";
 import { AnnounceCommand } from "./Common";
 import { ProfileCommand } from "./Profile";
-import { BanCommand, AddRolePermissionCommand, RemoveRolePermissionCommand, ListRolePermissionCommand } from "./Moderation";
+import { 
+  BanCommand, 
+  AddRolePermissionCommand, 
+  RemoveRolePermissionCommand, 
+  ListRolePermissionCommand,
+  PermissionsCommand 
+} from "./Moderation";
 
 export {
   PingCommand,
@@ -27,5 +33,6 @@ export {
   BanCommand,
   AddRolePermissionCommand,
   RemoveRolePermissionCommand,
-  ListRolePermissionCommand
+  ListRolePermissionCommand,
+  PermissionsCommand
 }

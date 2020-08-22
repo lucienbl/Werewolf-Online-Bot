@@ -15,16 +15,24 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import BanCommand from "./BanCommand";
-import AddRolePermissionCommand from "./AddRolePermissionCommand";
-import RemoveRolePermissionCommand from "./RemoveRolePermissionCommand";
-import ListRolePermissionCommand from "./ListRolePermissionCommand";
-import PermissionsCommand from "./PermissionsCommand";
+import { Message, MessageEmbed } from 'discord.js';
+import Command from '../Command';
+import { Permissions } from '../../core';
 
-export {
-  BanCommand,
-  AddRolePermissionCommand,
-  RemoveRolePermissionCommand,
-  ListRolePermissionCommand,
-  PermissionsCommand
+class PermissionsCommand extends Command {
+  constructor(message: Message) {
+    super(message, {
+      command: "permissions",
+      description: "Show all permission flags."
+    })
+  }
+
+  handler = async () => {
+    await this.message.channel.send(new MessageEmbed({
+      title: "Permission Flags",
+      description: Object.keys(Permissions).filter(key => key !== 'default').sort((a, b) => Permissions[a] < Permissions[b] ? 1 : -1).map(key => `• ${key} : \`${Permissions[key]}\``).join('\n')
+    }));
+  }
 }
+
+export default PermissionsCommand;
