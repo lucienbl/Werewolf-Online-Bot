@@ -15,15 +15,12 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PingCommand } from "./Utils";
-import { AnnounceCommand } from "./Common";
-import { ProfileCommand } from "./Profile";
-import { BanCommand, AddRolePermissionCommand, RemoveRolePermissionCommand, ListRolePermissionCommand } from "./Moderation";
+import BanCommand from "./BanCommand";
+import AddRolePermissionCommand from "./AddRolePermissionCommand";
+import RemoveRolePermissionCommand from "./RemoveRolePermissionCommand";
+import ListRolePermissionCommand from "./ListRolePermissionCommand";
 
 export {
-  PingCommand,
-  AnnounceCommand,
-  ProfileCommand,
   BanCommand,
   AddRolePermissionCommand,
   RemoveRolePermissionCommand,

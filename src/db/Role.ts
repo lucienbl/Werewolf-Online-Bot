@@ -15,17 +15,26 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PingCommand } from "./Utils";
-import { AnnounceCommand } from "./Common";
-import { ProfileCommand } from "./Profile";
-import { BanCommand, AddRolePermissionCommand, RemoveRolePermissionCommand, ListRolePermissionCommand } from "./Moderation";
+import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-export {
-  PingCommand,
-  AnnounceCommand,
-  ProfileCommand,
-  BanCommand,
-  AddRolePermissionCommand,
-  RemoveRolePermissionCommand,
-  ListRolePermissionCommand
+@Entity()
+export default class Role {
+
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
+
+    @Column({ unique: true })
+    discordRoleId: string;
+
+    @Column()
+    discordGuildId: string;
+
+    @Column({ default: 0 })
+    permissionInteger: number;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
+
+    @CreateDateColumn()
+    createdAt: Date;
 }

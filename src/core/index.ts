@@ -18,12 +18,18 @@
 // socket dispatcher
 import MessageDispatcher from "./MessageDispatcher";
 import GuildMemberAddDispatcher from "./GuildMemberAddDispatcher";
+import Permission from "./Permissions";
+import * as Permissions from "./Permissions";
 
 // managers
 import UserManager from "./UserManager";
+import RoleManager from "./RoleManager";
 
 export {
   MessageDispatcher,
   GuildMemberAddDispatcher,
-  UserManager
+  UserManager,
+  Permission,
+  Permissions,
+  RoleManager
 }

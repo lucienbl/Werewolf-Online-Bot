@@ -16,6 +16,7 @@
  */
 
 import { Message } from 'discord.js';
+import { Permission } from '../core';
 
 interface Argument {
   key: string;
@@ -27,6 +28,7 @@ interface Argument {
 interface Options {
   command: string;
   args?: Argument[];
+  permission?: number;
   description: string;
 }
 
@@ -77,6 +79,13 @@ class Command {
         if (!this.payload[index].value && this.payload[index].required) {
           throw new Error(`Missing required argument : \`${arg.key}\` (${arg.description})\n\nUsage : \`${this.usage}\``);
         }
+      }
+    }
+
+    // Check if user is allowed
+    if (this._options.permission) {
+      if (!await Permission.memberHasPermission(this._message.member, this._options.permission)) {
+        throw new Error(`Missing Permission : ${this._options.permission}`);
       }
     }
   

@@ -21,7 +21,7 @@ import { container } from 'tsyringe';
 import { createConnection, Connection } from "typeorm";
 import { Logger } from "./utils";
 import { MessageDispatcher, GuildMemberAddDispatcher } from './core';
-import { User } from './db';
+import { User, Role } from './db';
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -37,7 +37,8 @@ createConnection({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [
-    User
+    User,
+    Role
   ],
   synchronize: true,
   logging: true
