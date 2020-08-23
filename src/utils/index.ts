@@ -17,8 +17,10 @@
 
 import Logger from "./Logger";
 import superagent from "./superagent";
+import countryToEmoji from "./countryToEmoji";
 
 export {
   Logger,
-  superagent
+  superagent,
+  countryToEmoji
 }

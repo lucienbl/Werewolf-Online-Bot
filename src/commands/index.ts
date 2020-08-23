@@ -26,6 +26,9 @@ import {
   PermissionsCommand,
   EvaluateCommand
 } from "./Moderation";
+import {
+  ClanCommand
+} from "./Clan";
 
 export {
   PingCommand,
@@ -36,5 +39,6 @@ export {
   RemoveRolePermissionCommand,
   ListRolePermissionCommand,
   PermissionsCommand,
+  ClanCommand,
   EvaluateCommand
 }

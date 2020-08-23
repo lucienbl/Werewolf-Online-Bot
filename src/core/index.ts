@@ -24,6 +24,7 @@ import * as Permissions from "./Permissions";
 // managers
 import UserManager from "./UserManager";
 import RoleManager from "./RoleManager";
+import ClanManager from "./ClanManager";
 
 //API
 import ApiClient from "./ApiClient";
@@ -35,5 +36,6 @@ export {
   Permission,
   Permissions,
   RoleManager,
+  ClanManager,
   ApiClient
 }
