@@ -20,11 +20,13 @@ import AddRolePermissionCommand from "./AddRolePermissionCommand";
 import RemoveRolePermissionCommand from "./RemoveRolePermissionCommand";
 import ListRolePermissionCommand from "./ListRolePermissionCommand";
 import PermissionsCommand from "./PermissionsCommand";
+import EvaluateCommand from "./EvaluateCommand";
 
 export {
   BanCommand,
   AddRolePermissionCommand,
   RemoveRolePermissionCommand,
   ListRolePermissionCommand,
-  PermissionsCommand
+  PermissionsCommand,
+  EvaluateCommand
 }
