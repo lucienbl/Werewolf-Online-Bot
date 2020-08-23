@@ -25,11 +25,15 @@ import * as Permissions from "./Permissions";
 import UserManager from "./UserManager";
 import RoleManager from "./RoleManager";
 
+//API
+import ApiClient from "./ApiClient";
+
 export {
   MessageDispatcher,
   GuildMemberAddDispatcher,
   UserManager,
   Permission,
   Permissions,
-  RoleManager
+  RoleManager,
+  ApiClient
 }
