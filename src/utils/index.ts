@@ -16,7 +16,9 @@
  */
 
 import Logger from "./Logger";
+import superagent from "./superagent";
 
 export {
-  Logger
+  Logger,
+  superagent
 }
