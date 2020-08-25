@@ -16,7 +16,6 @@
  */
 
 import { PingCommand } from "./Utils";
-import { AnnounceCommand } from "./Common";
 import { ProfileCommand } from "./Profile";
 import {
   BanCommand,
@@ -32,7 +31,6 @@ import {
 
 export {
   PingCommand,
-  AnnounceCommand,
   ProfileCommand,
   BanCommand,
   AddRolePermissionCommand,

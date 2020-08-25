@@ -10,12 +10,12 @@ class EvaluateCommand extends Command {
       args: [
         {
           key: "evaluation",
-          description: "Evaluations.",
+          description: "Lines to evaluate.",
           required: true
         }
       ],
-      permission: Permissions.EVALUATE,
-      description: "Evaluate something."
+      description: "Evaluate something.",
+      permission: Permissions.EVALUATE
     })
   }
 

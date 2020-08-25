@@ -1,5 +1,5 @@
 import { Message, MessageEmbed, MessageAttachment } from 'discord.js';
-import { ClanManager } from '../../core';
+import { UserManager, ClanManager } from '../../core';
 import Command from '../Command';
 
 class ClanCommand extends Command {
@@ -9,13 +9,12 @@ class ClanCommand extends Command {
       args: [
         {
           key: "parameter",
-          description: "Parameter.",
+          description: "show/select",
           required: true
         },
         {
           key: "id",
-          description: "Clan id.",
-          required: true
+          description: "Clan id."
         }
       ],
       description: "Clan command."
@@ -24,17 +23,25 @@ class ClanCommand extends Command {
 
   handler = async () => {
 
+    const userManager = new UserManager();
+    const user = await userManager.getUserByDiscordId(this.message.author.id);
+
     if (this.argument("parameter").value == 'show') {
-      const clan = (await ClanManager.findClanById(this.argument("id").value)).clan;
+      const clan = (await ClanManager.findClanById(this.argument('id').value || user.selectedClan)).clan;
       const thumbnail = new MessageAttachment((await ClanManager.loadThumbnail(clan)), "thumbnail.png");
 
       const embed = new MessageEmbed()
       .attachFiles([thumbnail])
-      .setTitle(clan.tag + ' | ' + clan.name)
       .setImage("attachment://thumbnail.png")
-
-
       this.message.channel.send(embed);
+    }
+
+    if (this.argument("parameter").value == 'select') {
+      const clan = (await ClanManager.findClanById(this.argument('id').value)).clan;
+      user.selectedClan = clan.id;
+      userManager.updateUser(user);
+      
+      this.message.channel.send("Clan selected, " + clan.name + " !");
     }
 
   }

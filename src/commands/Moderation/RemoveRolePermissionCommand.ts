@@ -15,9 +15,9 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Message, Role as DiscordRole, Permissions } from 'discord.js';
+import { Message, Role as DiscordRole } from 'discord.js';
 import Command from '../Command';
-import { RoleManager, Permission } from '../../core';
+import { RoleManager, Permission, Permissions } from '../../core';
 import { Role } from '../../db';
 
 class RemoveRolePermissionCommand extends Command {
@@ -36,13 +36,12 @@ class RemoveRolePermissionCommand extends Command {
           required: true
         }
       ],
-      description: "Remove a permission to a role."
+      description: "Remove a permission to a role.",
+      permission: Permissions.MANAGE_PERMISSIONS
     });
   }
 
   handler = async () => {
-    if (!this.message.member.hasPermission(Permissions.FLAGS.ADMINISTRATOR)) throw new Error("You need to be an administrator to use that command!");
-
     const roleManager = new RoleManager();
 
     if (isNaN(parseInt(this.argument("permission").value))) throw new Error("Permission should be an integer !");
