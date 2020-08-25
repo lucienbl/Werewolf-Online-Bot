@@ -17,19 +17,18 @@
 
 import { Message, MessageEmbed } from 'discord.js';
 import Command from '../Command';
-import { RoleManager } from '../../core';
+import { RoleManager, Permissions } from '../../core';
 
 class ListRolePermissionCommand extends Command {
   constructor(message: Message) {
     super(message, {
       command: "list-role-permission",
-      description: "List role permissions."
+      description: "List role permissions.",
+      permission: Permissions.MANAGE_PERMISSIONS
     });
   }
 
   handler = async () => {
-    // TODO restrict command usage
-
     const roleManager = new RoleManager();
 
     const rolePermissions = await roleManager.getAllByGuild(this.message.guild.id);

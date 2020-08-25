@@ -23,7 +23,8 @@ class PermissionsCommand extends Command {
   constructor(message: Message) {
     super(message, {
       command: "permissions",
-      description: "Show all permission flags."
+      description: "Show all permission flags.",
+      permission: Permissions.MANAGE_PERMISSIONS
     })
   }
 
