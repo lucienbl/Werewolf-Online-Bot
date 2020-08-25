@@ -1,22 +1,5 @@
-/*
- *   Copyright (c) 2020 Lucien Blunk-Lallet
-
- *   This program is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
-
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
-
- *   You should have received a copy of the GNU General Public License
- *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 import { Message } from 'discord.js';
-import { Permission } from '../core';
+import { Permission, UserManager } from '../core';
 
 interface Argument {
   key: string;
@@ -88,13 +71,18 @@ class Command {
         throw new Error(`Missing Permission : ${this._options.permission}`);
       }
     }
-  
+
+    // Check if user is registered
+    const userManager = new UserManager();
+    const user = await userManager.getUserByDiscordId(this._message.author.id);
+    if (!user) await userManager.registerUser(this._message.author.id);
+
     return this.handler();
   }
 
   handler = async () => {
-    // nothing
   }
+
 }
 
 export default Command;
