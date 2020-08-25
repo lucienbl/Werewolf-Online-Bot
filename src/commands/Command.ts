@@ -55,6 +55,10 @@ class Command {
     return this._options.description;
   }
 
+  get permission(): number {
+    return this._options.permission;
+  }
+
   handle = async () => {
     // Check if all the required arguments exists
     if (this._options.args) {
