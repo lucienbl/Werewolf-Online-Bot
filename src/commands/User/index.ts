@@ -16,7 +16,9 @@
  */
 
 import ProfileCommand from "./ProfileCommand";
+import ThemeCommand from "./ThemeCommand";
 
 export {
-  ProfileCommand
+  ProfileCommand,
+  ThemeCommand
 }

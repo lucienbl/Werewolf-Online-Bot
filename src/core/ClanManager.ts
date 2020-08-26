@@ -8,20 +8,19 @@ class ClanManager {
     return ApiClient.getClan(clanId);
   }
 
-  static async loadThumbnail(clan) {
+  static async loadThumbnail(clan, user) {
     const canvas = createCanvas(400, 130);
     const ctx = canvas.getContext("2d");
 
     const emoji = new CanvasEmoji(ctx);
     registerFont("./src/data/fonts/Roboto-Bold.ttf", { family: "Bold" });
 
-    const background = await loadImage('https://www.beautycolorcode.com/eeeeee.png');
+    const background = await loadImage(`https://www.beautycolorcode.com/${user.theme == "wwo" ? 'F83F7D' : 'EEEEEE'}.png`);
     const flag = await loadImage(`./src/data/flags/fr.png`);
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(flag, 360, 10, 30, 20);
 
-
-    emoji.drawPngReplaceEmoji({text:clan.tag + ' | ' + clan.name, fillStyle: "#000000", font: "17px Bold", x:20, y:35, emojiW:25, emojiH:25, length:100})
+    emoji.drawPngReplaceEmoji({text:clan.tag + ' | ' + clan.name, fillStyle: user.theme == "wwo" ? '#ffffff' : '#000000', font: "17px Bold", x:20, y:35, emojiW:25, emojiH:25, length:100})
     ctx.font = "12px Bold";
     ctx.textAlign = "center";
     ctx.fillText('50/50', 375, 45);

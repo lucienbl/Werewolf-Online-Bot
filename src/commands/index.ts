@@ -16,7 +16,10 @@
  */
 
 import { PingCommand } from "./Utils";
-import { ProfileCommand } from "./Profile";
+import {
+  ProfileCommand,
+  ThemeCommand
+} from "./User";
 import {
   BanCommand,
   AddRolePermissionCommand,
@@ -38,5 +41,6 @@ export {
   ListRolePermissionCommand,
   PermissionsCommand,
   ClanCommand,
-  EvaluateCommand
+  EvaluateCommand,
+  ThemeCommand
 }

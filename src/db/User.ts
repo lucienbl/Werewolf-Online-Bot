@@ -12,6 +12,9 @@ export default class User {
     @Column()
     selectedClan: string;
 
+    @Column()
+    theme: string;
+
     @UpdateDateColumn()
     updatedAt: Date;
 
