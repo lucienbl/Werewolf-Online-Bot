@@ -28,11 +28,12 @@ class ClanCommand extends Command {
 
     if (this.argument("parameter").value == 'show') {
       const clan = (await ClanManager.findClanById(this.argument('id').value || user.selectedClan)).clan;
-      const thumbnail = new MessageAttachment((await ClanManager.loadThumbnail(clan)), "thumbnail.png");
+      const thumbnail = new MessageAttachment((await ClanManager.loadThumbnail(clan, user)), "thumbnail.png");
 
       const embed = new MessageEmbed()
       .attachFiles([thumbnail])
       .setImage("attachment://thumbnail.png")
+      .setColor(user.theme == "wwo" ? "#F83F7D" : "#EEEEEE")
       this.message.channel.send(embed);
     }
 
@@ -40,7 +41,7 @@ class ClanCommand extends Command {
       const clan = (await ClanManager.findClanById(this.argument('id').value)).clan;
       user.selectedClan = clan.id;
       userManager.updateUser(user);
-      
+
       this.message.channel.send("Clan selected, " + clan.name + " !");
     }
 

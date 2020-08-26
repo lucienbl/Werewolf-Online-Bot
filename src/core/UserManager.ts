@@ -14,6 +14,7 @@ class UserManager {
     const user = new User();
     user.discordUserId = discordUserId;
     user.selectedClan = '';
+    user.theme = 'default'
 
     return this._userRepository.save(user);
   }
