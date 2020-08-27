@@ -30,6 +30,7 @@ class MessageDispatcher {
     const command = content.split(" ")[0].replace(process.env.BOT_PREFIX, "");
 
     if (command === "help") {
+      this._message.delete()
       return this._message.channel.send(new MessageEmbed({
         title: "List of all the commands",
         description: Object.keys(Commands).map(key => {
