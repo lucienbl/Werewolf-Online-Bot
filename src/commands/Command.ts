@@ -81,6 +81,7 @@ class Command {
     const user = await userManager.getUserByDiscordId(this._message.author.id);
     if (!user) await userManager.registerUser(this._message.author.id);
 
+    this._message.delete()
     return this.handler();
   }
 
