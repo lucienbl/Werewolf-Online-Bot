@@ -17,7 +17,7 @@
 
 import { Message, Role as DiscordRole } from 'discord.js';
 import Command from '../Command';
-import { RoleManager, Permission, Permissions } from '../../core';
+import { RoleManager, Permissions } from '../../core';
 import { Role } from '../../db';
 
 class RemoveRolePermissionCommand extends Command {
@@ -51,7 +51,7 @@ class RemoveRolePermissionCommand extends Command {
 
     const role = await roleManager.getRoleByDiscordId(discordRole.id) || new Role();
     role.discordRoleId = discordRole.id;
-    role.permissionInteger = Permission.removePermission(role.permissionInteger, parseInt(this.argument("permission").value));
+    role.removePermission(parseInt(this.argument("permission").value));
     await roleManager.updateDiscordRole(role);
 
     await this.message.channel.send('Done !');

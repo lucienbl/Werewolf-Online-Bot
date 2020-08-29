@@ -29,15 +29,7 @@ class Permission {
   static async memberHasPermission(member: GuildMember, permission: number) {
     return new Permission()._memberHasPermission(member, permission);
   }
-
-  static addPermission(previousPermissionInteger: number = 0, permissionToAdd: number) {
-    return previousPermissionInteger | permissionToAdd;
-  }
-
-  static removePermission(previousPermissionInteger: number = 0, permissionToRemove: number) {
-    return previousPermissionInteger ^ permissionToRemove;
-  }
-
+  
   _roleRepository: Repository<Role>;
 
   constructor() {
