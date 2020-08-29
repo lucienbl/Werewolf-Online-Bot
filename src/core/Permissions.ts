@@ -22,8 +22,8 @@ import { container } from 'tsyringe';
 
 // permission bitfields come here
 export const BAN_MEMBERS        = 0x00000001;
-export const EVALUATE           = 0x00000010;
-export const MANAGE_PERMISSIONS = 0x00000011;
+export const EVALUATE           = 0x00000002;
+export const MANAGE_PERMISSIONS = 0x00000004;
 
 class Permission {
   static async memberHasPermission(member: GuildMember, permission: number) {
